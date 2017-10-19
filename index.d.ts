@@ -193,7 +193,7 @@ interface Campaign extends Roll20Object {
     get(parameter: "initiativepage"): boolean; // Only returns true or false, not what the roll20 wiki says
     get(parameter: "playerpageid"): false | string;
     get(parameter: "playerspecificpages"): false | object;
-    get(parameter: "turnorder" | "_journalfolder" | "jukeboxfolder"): string;
+    get(parameter: "turnorder" | "_journalfolder" | "_jukeboxfolder"): string;
 }
 
 interface Message {
@@ -218,8 +218,8 @@ interface CustomFX {
     maxParticles: number;
     size: number;
     speed: number;
-    startColour: number[];
-    endColour: number[];
+    startColour: [number, number, number, number];
+    endColour: [number, number, number, number];
     onDeath: string;
     // todo [effect]Random
 }
