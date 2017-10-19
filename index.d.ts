@@ -27,6 +27,8 @@ declare function stopJukeboxPlaylist(): void;
 declare function toBack(obj: Roll20Object): void;
 declare function toFront(obj: Roll20Object): void;
 
+/* tslint:enable:variable-name */
+
 declare const enum ObjTypes {
     Character = "character",
     Graphic = "graphic",

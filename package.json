@@ -18,5 +18,9 @@
     "url": "https://github.com/kihira/roll20-typescript/issues"
   },
   "homepage": "https://github.com/kihira/roll20-typescript#readme",
-  "types": "index.d.ts"
+  "types": "index.d.ts",
+  "devDependencies": {
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  }
 }
