@@ -1,0 +1,22 @@
+{
+  "name": "@types/roll20-typescript",
+  "version": "1.0.0",
+  "description": "TypeScript definitions for the Roll20 API",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kihira/roll20-typescript.git"
+  },
+  "keywords": [
+    "Typescript",
+    "Roll20"
+  ],
+  "author": "Kihira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kihira/roll20-typescript/issues"
+  },
+  "homepage": "https://github.com/kihira/roll20-typescript#readme",
+  "types": "index.d.ts"
+}
