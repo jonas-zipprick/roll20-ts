@@ -178,6 +178,64 @@ declare const enum FX {
     SplatterWater = "splatter-water",
 }
 
+declare const enum StatusMarker {
+    Red = "red",
+    Blue = "blue",
+    Green = "green",
+    Brown = "brown",
+    Purple = "purple",
+    Pink = "pink",
+    Yellow = "yellow",
+    Dead = "dead",
+    Skull = "skull",
+    Sleepy = "sleepy",
+    HalfHeart = "half-heart",
+    HalfHaze = "half-haze",
+    Interdiction = "interdiction",
+    Snail = "snail",
+    LightningHelix = "lightning-helix",
+    Spanner = "spanner",
+    ChainedHeart = "chained-heart",
+    ChemicalBolt = "chemical-bolt",
+    DeathZone = "death-zone",
+    DrinkMe = "drink-me",
+    EdgeCrack = "edge-crack",
+    NinjaMask = "ninja-mask",
+    Stopwatch = "stopwatch",
+    FishingNet = "fishing-net",
+    Overdrive = "overdrive",
+    Strong = "strong",
+    Fist = "fist",
+    Padlock = "padlock",
+    ThreeLeaves = "three-leaves",
+    FluffyWing = "fluffy-wing",
+    Pummeled = "pummeled",
+    Tread = "tread",
+    Arrowed = "arrowed",
+    Aura = "aura",
+    BackPain = "back-pain",
+    BlackFlag = "black-flag",
+    BleedingEye = "bleeding-eye",
+    BoltShield = "bolt-shield",
+    BrokenHeart = "broken-heart",
+    Cobweb = "cobweb",
+    BrokenShield = "broken-shield",
+    FlyingFlag = "flying-flag",
+    Radioactive = "radioactive",
+    Trophy = "trophy",
+    BrokenSkull = "broken-skull",
+    FrozenOrb = "frozen-orb",
+    RollingBomb = "rolling-bomb",
+    WhiteTower = "white-tower",
+    Grab = "grab",
+    Screaming = "screaming",
+    Grenade = "grenade",
+    SentryGun = "sentry-gun",
+    AllForOne = "all-for-one",
+    AngelOutfit = "angel-outfit",
+    ArcheryTarget = "archery-target",
+}
+
 interface Roll20Object {
     id: string;
 
@@ -190,6 +248,7 @@ interface Roll20Object {
     get(parameter: string): string;
     remove(): void;
     set(property: string, value: string | number | boolean): void;
+    set(status: StatusMarker, value: number | boolean): void;
     set(attributes: object): void;
 }
 
