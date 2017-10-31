@@ -19,7 +19,7 @@ declare function on(event: string, callback: (obj?: any, prev?: any) => void): v
 declare function onSheetWorkerCompleted(callback: () => void): void;
 declare function playerIsGM(player_id: string): boolean;
 declare function randomInteger(max: number): number;
-declare function sendChat(speakingas: string, message: string, callback?: (msg: Message) => void,
+declare function sendChat(speakingas: string, message: string, callback?: (msg: Message[]) => void | null,
                           options?: { noarchive?: boolean, use3d?: boolean }): void;
 declare function sendPing(left: number, top: number, page_id: string, player_id?: string, moveall?: boolean): void;
 declare function spawnFx(left: number, top: number, type: FX | string, page_id?: string | undefined): void;
