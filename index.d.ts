@@ -1,5 +1,11 @@
 /* tslint:disable:variable-name */
 
+interface State {
+    [key: string]: any;
+}
+
+declare var state: State;
+
 declare function Campaign(): Campaign;
 declare function createObj(type: ObjTypes, attributes: object): Roll20Object;
 declare function filterObjs(callback: (obj: Roll20Object) => void): Roll20Object[];
