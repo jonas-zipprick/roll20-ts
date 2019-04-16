@@ -350,6 +350,13 @@ declare const enum StatusMarker {
     ArcheryTarget = "archery-target",
 }
 
+declare const enum Layer {
+    GMLayer = "gmlayer",
+    Objects = "objects",
+    Map = "map",
+    Walls = "walls",
+}
+
 interface Roll20Object {
     id: string;
 
@@ -359,7 +366,7 @@ interface Roll20Object {
      * @param callback
      */
     get(parameter: string, callback: (value: string) => void): void;
-    get(parameter: string): string;
+    get(parameter: "_id" | "_pageid" | string): string;
     remove(): void;
     set(property: string, value: string | number | boolean): void;
     set(status: StatusMarker, value: number | boolean): void;
@@ -373,6 +380,31 @@ interface Campaign extends Roll20Object {
     get(parameter: "playerpageid"): false | string;
     get(parameter: "playerspecificpages"): false | object;
     get(parameter: "turnorder" | "_journalfolder" | "_jukeboxfolder"): string;
+}
+
+interface Path extends Roll20Object {
+    get(parameter: "_type"): "path";
+    get(parameter: "_path"): string;
+    get(parameter: "fill"): "transparent" | string;
+    get(parameter: "stroke"): "#000000" | string;
+    get(parameter: "rotation" | "width" | "height" | "top" | "left"): 0 | number;
+    get(parameter: "layer"): Layer;
+    get(parameter: "stroke_width"): 5 | number;
+    get(parameter: "scaleX" | "scaleY"): 1 | number;
+    get(parameter: "controlledby"): string;
+}
+
+interface Text extends Roll20Object {
+    get(parameter: "_type"): "text";
+    get(parameter: "rotation" | "top" | "left" | "width" | "height"): 0 | number;
+    get(parameter: "text" | "controlledby"): string;
+    get(parameter: "font_size"): 16 | number;
+    get(parameter: "color"): "rgb(0, 0, 0)" | string;
+    get(parameter: "font_family"): "Arial" | "Patrick Hand" | "Contrail One" | "Shadows Into Light" | "Candal";
+
+    set(parameter: "rotation" | "top" | "left" | "width" | "height" | "font_size", value: number);
+    set(parameter: "text" | "color" | "controlledby", value: string);
+    set(parameter: "font_family", value: "Arial" | "Patrick Hand" | "Contrail One" | "Shadows Into Light" | "Candal");
 }
 
 interface Message {
