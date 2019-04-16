@@ -1,4 +1,3 @@
-/* tslint:disable:variable-name */
 
 interface State {
     [key: string]: any;
@@ -7,31 +6,146 @@ interface State {
 declare var state: State;
 
 declare function Campaign(): Campaign;
-declare function createObj(type: ObjTypes, attributes: object): Roll20Object;
-declare function filterObjs(callback: (obj: Roll20Object) => void): Roll20Object[];
+
+/**
+ * @param type The type of Roll20 object to create
+ * @param attributes The initial values to use for the Roll20 object's properties
+ */
+declare function createObj(type: ObjTypes.Graphic|ObjTypes.Text|ObjTypes.Path|ObjTypes.Character|ObjTypes.Ability|
+                           ObjTypes.Attribute|ObjTypes.Handout|ObjTypes.RollableTable|ObjTypes.TableItem|ObjTypes.Macro,
+                           attributes: object): Roll20Object;
+
+/**
+ * @param callback A predicate function to test all Roll20 objects against.
+ */
+declare function filterObjs(callback: (obj: Roll20Object) => boolean): Roll20Object[];
+
+/**
+ * @param attributes A collection of key:value pairs to match with Roll20 objects in the campaign.
+ * @param options If options.caseInsensitive is true, string comparisons between Roll20 objects and attributes will be
+ * case-insensitive.
+ */
 declare function findObjs(attributes: object, options?: { caseInsensitive: boolean }): Roll20Object[];
+
 declare function getAllObjs(): Roll20Object[];
+
+/**
+ * @param character_id The id of the character Roll20 object that is the parent of the attribute Roll20 object you want
+ * the value of.
+ * @param attribute_name The name of the attribute Roll20 object you want the value of.
+ * @param value_type Either "current" or "max" (defaults to "current" if omitted).
+ */
 declare function getAttrByName(character_id: string, attribute_name: string, value_type?: "current"|"max"): string;
+
+/**
+ * @param type The type of Roll20 object to get.
+ * @param id The unique id for the Roll20 object to get.
+ */
 declare function getObj(type: ObjTypes, id: string): Roll20Object;
+
+/**
+ * @param message The message to post to the API console. The message parameter will be transformed into a String with
+ * JSON.stringify.
+ */
 declare function log(message: any): void;
+
 declare function on(event: "chat:message", callback: (msg: Message) => void): void;
+
 declare function on(event: string, callback: (obj?: any, prev?: any) => void): void;
+
+/**
+ * @param callback The function that will be called when the current 'stack' of Sheet Worker Scripts completes.
+ */
 declare function onSheetWorkerCompleted(callback: () => void): void;
+
+/**
+ * @param player_id The id of the player Roll20 object to check.
+ */
 declare function playerIsGM(player_id: string): boolean;
+
+/**
+ * Starts playing the playlist
+ * @param playerlist_id The id of the playlist to start playing
+ */
+declare function playJukeboxPlaylist(playerlist_id: string): void;
+
+/**
+ * A random integer between 1 (inclusive) and max (inclusive). This function has better distribution than Math.random(),
+ * and is recommended over it. This function doesn't make use of the Quantum Roll feature used by the dice engine, but
+ * it does use the same pseudorandom algorithm that the dice engine will fall back on if Quantum Roll is unavailable.
+ * @param max The maximum number to return, inclusive
+ */
 declare function randomInteger(max: number): number;
+
+/**
+ * Sends a chat messages asynchronously
+ * @param speakingas The name to attach to the message being sent. If speakingAs is in the format player|player_id or
+ * character|character_id, the message will be sent as that player or character. Otherwise, the message will use the
+ * given name as though a GM had used the /as command
+ * @param message The message to send to the chat
+ * @param callback If callback is specified, the result of the chat message will be passed to it instead of appearing in
+ * the chat. The parameter of the callback method is an array of message objects
+ * @param options If options.noarchive is true, the message will not be added to the chat archive. If options.use3d is
+ * true, dice rolls in the message will use the 3D dice feature. Options are not applicable if callback is specified
+ */
 declare function sendChat(speakingas: string, message: string, callback?: ((msg: Message[]) => void) | null,
                           options?: { noarchive?: boolean, use3d?: boolean }): void;
+
+/**
+ *
+ * At this time, only GMs will have their views centered if moveAll is true
+ * @param left The x-coordinate to place the ping at
+ * @param top The y-coordinate to place the ping at
+ * @param page_id The id of the page Roll20 object to place the ping on
+ * @param player_id The ping will use the specified player's color. If player_id is omitted, the ping will be yellow
+ * @param moveall If moveAll is true, all of the players on the appropriate page will have their views centered on the
+ * ping
+ */
 declare function sendPing(left: number, top: number, page_id: string, player_id?: string, moveall?: boolean): void;
+
+/**
+ *
+ * @param left The x-coordinate to place the particle emitter
+ * @param top The y-coordinate to place the particle emitter
+ * @param type The type of particle emitter to place
+ * @param page_id The id of the page Roll20 object to place the particle emitter on. If omitted,
+ * Campaign().get('playerpageid') will be used instead
+ */
 declare function spawnFx(left: number, top: number, type: FX | string, page_id?: string | undefined): void;
+
+/**
+ *
+ * @param start The starting point for the particle emitter
+ * @param end The ending point for the particle emitter
+ * @param type The type of particle emitter to place
+ * @param page_id The id of the page Roll20 object to place the particle emitter on. If omitted,
+ * Campaign().get('playerpageid') will be used instead
+ */
 declare function spawnFxBetweenPoints(start: {x: number, y: number}, end: {x: number, y: number}, type: FX | string,
                                       page_id?: string | undefined): void;
+
+/**
+ *
+ * @param left The x-coordinate to place the particle emitter
+ * @param top The y-coordinate to place the particle emitter
+ * @param definition The characteristics of the particle emitter to place
+ * @param page_id The id of the page Roll20 object to place the particle emitter on. If omitted,
+ * Campaign().get('playerpageid') will be used instead
+ */
 declare function spawnFxWithDefinition(left: number, top: number, definition: CustomFX,
                                        page_id?: string | undefined): void;
-declare function stopJukeboxPlaylist(): void;
-declare function toBack(obj: Roll20Object): void;
-declare function toFront(obj: Roll20Object): void;
 
-/* tslint:enable:variable-name */
+declare function stopJukeboxPlaylist(): void;
+
+/**
+ * @param obj The Roll20 object to send to the back of its layer
+ */
+declare function toBack(obj: Roll20Object): void;
+
+/**
+ * @param obj The Roll20 object to bring to the front of its layer
+ */
+declare function toFront(obj: Roll20Object): void;
 
 declare const enum ObjTypes {
     Character = "character",

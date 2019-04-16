@@ -20,7 +20,7 @@
   "homepage": "https://github.com/kihira/roll20-typescript#readme",
   "types": "index.d.ts",
   "devDependencies": {
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.3"
+    "tslint": "5.15.0",
+    "typescript": "3.4.3"
   }
 }
