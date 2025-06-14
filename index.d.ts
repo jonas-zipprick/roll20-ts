@@ -1,33 +1,33 @@
 
-interface State {
+export interface State {
     [key: string]: any;
 }
 
-declare var state: State;
+export declare var state: State;
 
-declare function Campaign(): Campaign;
+export declare function Campaign(): Campaign;
 
 /**
  * @param type The type of Roll20 object to create
  * @param attributes The initial values to use for the Roll20 object's properties
  */
-declare function createObj(type: ObjTypes.Graphic|ObjTypes.Text|ObjTypes.Path|ObjTypes.Character|ObjTypes.Ability|
+export declare function createObj(type: ObjTypes.Graphic|ObjTypes.Text|ObjTypes.Path|ObjTypes.Character|ObjTypes.Ability|
                            ObjTypes.Attribute|ObjTypes.Handout|ObjTypes.RollableTable|ObjTypes.TableItem|ObjTypes.Macro,
                            attributes: object): Roll20Object;
 
 /**
  * @param callback A predicate function to test all Roll20 objects against.
  */
-declare function filterObjs(callback: (obj: Roll20Object) => boolean): Roll20Object[];
+export declare function filterObjs(callback: (obj: Roll20Object) => boolean): Roll20Object[];
 
 /**
  * @param attributes A collection of key:value pairs to match with Roll20 objects in the campaign.
  * @param options If options.caseInsensitive is true, string comparisons between Roll20 objects and attributes will be
  * case-insensitive.
  */
-declare function findObjs(attributes: object, options?: { caseInsensitive: boolean }): Roll20Object[];
+export declare function findObjs(attributes: object, options?: { caseInsensitive: boolean }): Roll20Object[];
 
-declare function getAllObjs(): Roll20Object[];
+export declare function getAllObjs(): Roll20Object[];
 
 /**
  * @param character_id The id of the character Roll20 object that is the parent of the attribute Roll20 object you want
@@ -35,39 +35,39 @@ declare function getAllObjs(): Roll20Object[];
  * @param attribute_name The name of the attribute Roll20 object you want the value of.
  * @param value_type Either "current" or "max" (defaults to "current" if omitted).
  */
-declare function getAttrByName(character_id: string, attribute_name: string, value_type?: "current"|"max"): string;
+export declare function getAttrByName(character_id: string, attribute_name: string, value_type?: "current"|"max"): string;
 
 /**
  * @param type The type of Roll20 object to get.
  * @param id The unique id for the Roll20 object to get.
  */
-declare function getObj(type: ObjTypes, id: string): Roll20Object;
+export declare function getObj(type: ObjTypes, id: string): Roll20Object;
 
 /**
  * @param message The message to post to the API console. The message parameter will be transformed into a String with
  * JSON.stringify.
  */
-declare function log(message: any): void;
+export declare function log(message: any): void;
 
-declare function on(event: "chat:message", callback: (msg: Message) => void): void;
+export declare function on(event: "chat:message", callback: (msg: Message) => void): void;
 
-declare function on(event: string, callback: (obj?: any, prev?: any) => void): void;
+export declare function on(event: string, callback: (obj?: any, prev?: any) => void): void;
 
 /**
  * @param callback The function that will be called when the current 'stack' of Sheet Worker Scripts completes.
  */
-declare function onSheetWorkerCompleted(callback: () => void): void;
+export declare function onSheetWorkerCompleted(callback: () => void): void;
 
 /**
  * @param player_id The id of the player Roll20 object to check.
  */
-declare function playerIsGM(player_id: string): boolean;
+export declare function playerIsGM(player_id: string): boolean;
 
 /**
  * Starts playing the playlist
  * @param playerlist_id The id of the playlist to start playing
  */
-declare function playJukeboxPlaylist(playerlist_id: string): void;
+export declare function playJukeboxPlaylist(playerlist_id: string): void;
 
 /**
  * A random integer between 1 (inclusive) and max (inclusive). This function has better distribution than Math.random(),
@@ -75,7 +75,7 @@ declare function playJukeboxPlaylist(playerlist_id: string): void;
  * it does use the same pseudorandom algorithm that the dice engine will fall back on if Quantum Roll is unavailable.
  * @param max The maximum number to return, inclusive
  */
-declare function randomInteger(max: number): number;
+export declare function randomInteger(max: number): number;
 
 /**
  * Sends a chat messages asynchronously
@@ -88,7 +88,7 @@ declare function randomInteger(max: number): number;
  * @param options If options.noarchive is true, the message will not be added to the chat archive. If options.use3d is
  * true, dice rolls in the message will use the 3D dice feature. Options are not applicable if callback is specified
  */
-declare function sendChat(speakingas: string, message: string, callback?: ((msg: Message[]) => void) | null,
+export declare function sendChat(speakingas: string, message: string, callback?: ((msg: Message[]) => void) | null,
                           options?: { noarchive?: boolean, use3d?: boolean }): void;
 
 /**
@@ -101,7 +101,7 @@ declare function sendChat(speakingas: string, message: string, callback?: ((msg:
  * @param moveall If moveAll is true, all of the players on the appropriate page will have their views centered on the
  * ping
  */
-declare function sendPing(left: number, top: number, page_id: string, player_id?: string, moveall?: boolean): void;
+export declare function sendPing(left: number, top: number, page_id: string, player_id?: string, moveall?: boolean): void;
 
 /**
  *
@@ -111,7 +111,7 @@ declare function sendPing(left: number, top: number, page_id: string, player_id?
  * @param page_id The id of the page Roll20 object to place the particle emitter on. If omitted,
  * Campaign().get('playerpageid') will be used instead
  */
-declare function spawnFx(left: number, top: number, type: FX | string, page_id?: string | undefined): void;
+export declare function spawnFx(left: number, top: number, type: FX | string, page_id?: string | undefined): void;
 
 /**
  *
@@ -121,7 +121,7 @@ declare function spawnFx(left: number, top: number, type: FX | string, page_id?:
  * @param page_id The id of the page Roll20 object to place the particle emitter on. If omitted,
  * Campaign().get('playerpageid') will be used instead
  */
-declare function spawnFxBetweenPoints(start: {x: number, y: number}, end: {x: number, y: number}, type: FX | string,
+export declare function spawnFxBetweenPoints(start: {x: number, y: number}, end: {x: number, y: number}, type: FX | string,
                                       page_id?: string | undefined): void;
 
 /**
@@ -132,22 +132,22 @@ declare function spawnFxBetweenPoints(start: {x: number, y: number}, end: {x: nu
  * @param page_id The id of the page Roll20 object to place the particle emitter on. If omitted,
  * Campaign().get('playerpageid') will be used instead
  */
-declare function spawnFxWithDefinition(left: number, top: number, definition: CustomFX,
+export declare function spawnFxWithDefinition(left: number, top: number, definition: CustomFX,
                                        page_id?: string | undefined): void;
 
-declare function stopJukeboxPlaylist(): void;
+export declare function stopJukeboxPlaylist(): void;
 
 /**
  * @param obj The Roll20 object to send to the back of its layer
  */
-declare function toBack(obj: Roll20Object): void;
+export declare function toBack(obj: Roll20Object): void;
 
 /**
  * @param obj The Roll20 object to bring to the front of its layer
  */
-declare function toFront(obj: Roll20Object): void;
+export declare function toFront(obj: Roll20Object): void;
 
-declare const enum ObjTypes {
+export declare const enum ObjTypes {
     Character = "character",
     Graphic = "graphic",
     Player = "player",
@@ -168,7 +168,7 @@ declare const enum ObjTypes {
     CustomFX = "custfx",
 }
 
-declare const enum FX {
+export declare const enum FX {
     BeamAcid = "beam-acid",
     BeamBlood = "beam-blood",
     BeamCharm = "beam-charm",
@@ -292,7 +292,7 @@ declare const enum FX {
     SplatterWater = "splatter-water",
 }
 
-declare const enum StatusMarker {
+export declare const enum StatusMarker {
     Red = "red",
     Blue = "blue",
     Green = "green",
@@ -350,14 +350,14 @@ declare const enum StatusMarker {
     ArcheryTarget = "archery-target",
 }
 
-declare const enum Layer {
+export declare const enum Layer {
     GMLayer = "gmlayer",
     Objects = "objects",
     Map = "map",
     Walls = "walls",
 }
 
-interface Roll20Object {
+export interface Roll20Object {
     id: string;
 
     /**
@@ -373,7 +373,7 @@ interface Roll20Object {
     set(attributes: object): void;
 }
 
-interface Campaign extends Roll20Object {
+export interface Campaign extends Roll20Object {
     get(parameter: "_id"): "root";
     get(parameter: "_type"): "campaign";
     get(parameter: "initiativepage"): boolean; // Only returns true or false, not what the roll20 wiki says
@@ -382,7 +382,7 @@ interface Campaign extends Roll20Object {
     get(parameter: "turnorder" | "_journalfolder" | "_jukeboxfolder"): string;
 }
 
-interface Path extends Roll20Object {
+export interface Path extends Roll20Object {
     get(parameter: "_type"): "path";
     get(parameter: "_path"): string;
     get(parameter: "fill"): "transparent" | string;
@@ -394,7 +394,7 @@ interface Path extends Roll20Object {
     get(parameter: "controlledby"): string;
 }
 
-interface Text extends Roll20Object {
+export interface Text extends Roll20Object {
     get(parameter: "_type"): "text";
     get(parameter: "rotation" | "top" | "left" | "width" | "height"): 0 | number;
     get(parameter: "text" | "controlledby"): string;
@@ -407,7 +407,7 @@ interface Text extends Roll20Object {
     set(parameter: "font_family", value: "Arial" | "Patrick Hand" | "Contrail One" | "Shadows Into Light" | "Candal");
 }
 
-interface Message {
+export interface Message {
     who: string;
     playerid: string;
     type: string;
@@ -420,7 +420,7 @@ interface Message {
     selected?: Array<{_id: string, _type: string}>;
 }
 
-interface CustomFX {
+export interface CustomFX {
     angle: number;
     duration?: number;
     emissionRate: number;
